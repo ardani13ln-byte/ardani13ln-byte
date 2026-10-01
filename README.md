@@ -8,6 +8,24 @@ months when nobody remembers why it was written that way.
 
 ## Selected work
 
+### [etlflow — declarative data pipelines](https://github.com/ardani13ln-byte/etl-flow)
+
+Zero dependencies, Python 3.10+.
+
+```bash
+python3 -m etlflow demo --out orders.csv
+```
+
+You describe the steps in a plan file; the runner gives you resumability,
+observability, and a dry-run you can trust. Checkpoints skip finished steps
+**and replay their output**, so a resumed run never writes an empty file. A
+changed input file invalidates the checkpoint instead of replaying stale rows.
+The write step is never cached — the output file is the deliverable. Dry-run
+steps report `DRY`, never `OK`.
+
+116 tests. Rejected rows carry their source line number, because the person
+fixing them is reading the file, not your log.
+
 ### [api-sync — REST client with retries, pagination, idempotency](https://github.com/ardani13ln-byte/api-sync)
 
 Zero dependencies, Python 3.10+.
@@ -43,7 +61,7 @@ It exists because every "convert CSV to JSON" snippet on the internet quietly
 turns `007` into `7` and swallows short rows. See the
 [comparison table](https://github.com/ardani13ln-byte/pipeline-toolkit#why-it-exists).
 
-**134 tests between the two, all passing, no dependencies in either.**
+**250 tests between the three, all passing, no dependencies in any.**
 
 ## How I work
 
